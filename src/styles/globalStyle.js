@@ -12,11 +12,12 @@ export default createGlobalStyle`
         --grey-4: #121214;
         --success: #3FE864;
         --error: #E83F5B;
+        --white: #fff;
         
-        --title-size-1: calc(1rem + 2px);
-        --title-size-2: calc(var(--title-size-1) - 2px);
-        --title-size-3: calc(var(--title-size-2) - 2px);
-        --headline-size: calc(var(--title-size-3) - 2px);
+        --size-1: calc(var(--size-2) - 2px);
+        --size-2: calc(var(--size-3) - 2px);
+        --size-3: calc(var(--size-4) - 2px);
+        --size-4: calc(1rem + 2px);
         
         --font-primary: 'Inter', sans-serif;
     }
@@ -25,6 +26,7 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: var(--font-primary);
+        color: var(--white)
     }
 
     button {
