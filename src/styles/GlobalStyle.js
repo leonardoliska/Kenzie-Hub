@@ -26,7 +26,8 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         font-family: var(--font-primary);
-        color: var(--white)
+        color: var(--white);
+        background-color: var(--grey-4);
     }
 
     button {
