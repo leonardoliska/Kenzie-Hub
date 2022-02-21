@@ -14,7 +14,7 @@ export const Container = styled.div`
 `
 
 export const customStyles = {
-    control: (base, state) => ({
+    control: (base) => ({
         ...base,
         background: "var(--grey-2)",
         color: "var(--grey-1)",
