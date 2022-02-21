@@ -12,7 +12,7 @@ export default createGlobalStyle`
         --grey-4: #121214;
         --success: #3FE864;
         --error: #E83F5B;
-        --white: #fff;
+        --white: #FFF;
         
         --size-1: calc(var(--size-2) - 2px);
         --size-2: calc(var(--size-3) - 2px);
