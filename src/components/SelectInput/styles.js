@@ -15,6 +15,7 @@ export const Container = styled.div`
 export const customStyles = {
     control: (base) => ({
         ...base,
+        minHeight: "48px",
         background: "var(--grey-2)",
         color: "var(--grey-1)",
         border: "2px solid transparent",

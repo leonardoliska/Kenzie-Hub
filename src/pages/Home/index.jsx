@@ -8,6 +8,7 @@ import Card from "../../components/Card"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
 import UpdateCardComponent from "../../components/UpdateCardComponent"
+import CreateCardComponent from "../../components/CreateCardComponent"
 
 const Home = () => {
     return (
@@ -21,7 +22,8 @@ const Home = () => {
             <Card></Card>
             <Navbar></Navbar>
             <Header></Header> */}
-            <UpdateCardComponent />
+            {/* <UpdateCardComponent /> */}
+            <CreateCardComponent></CreateCardComponent>
         </>
     )
 }

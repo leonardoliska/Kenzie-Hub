@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const Container = styled.button`
     border-radius: 4px;
-    height: 48px;
+    min-height: 48px;
     flex: 1;
     border: none;
     padding: 0 20px;

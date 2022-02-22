@@ -1,11 +1,11 @@
-import { Overlay, Container, TopContainer, BottomContainer, ButtonContainer } from "./styles"
+import { Overlay, Container, TopContainer, BottomContainer } from "./styles"
 
 import Input from "../Input"
 import SelectInput from "../SelectInput"
 import Button from "../Button"
 import { useState } from "react"
 
-const UpdateCardComponent = () => {
+const CreateCardComponent = () => {
     const [inputValue, setInputValue] = useState("")
     const [selectValue, setSelectValue] = useState("")
 
@@ -21,16 +21,11 @@ const UpdateCardComponent = () => {
                 <BottomContainer>
                     <Input label="Nome do Projeto" setInputValue={setInputValue} value={inputValue} />
                     <SelectInput label="Selecionar Status" setSelectValue={setSelectValue} />
-                    <ButtonContainer>
-                        <Button isActive={isInputEmpty}>Salvar Alterações</Button>
-                        <Button isActive={isInputEmpty} colorSchema="grey">
-                            Excluir
-                        </Button>
-                    </ButtonContainer>
+                    <Button isActive={isInputEmpty}>Cadastrar Tecnologia</Button>
                 </BottomContainer>
             </Container>
         </Overlay>
     )
 }
 
-export default UpdateCardComponent
+export default CreateCardComponent
