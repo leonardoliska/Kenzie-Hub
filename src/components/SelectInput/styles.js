@@ -2,13 +2,12 @@ import styled from "styled-components"
 
 export const Container = styled.div`
     position: relative;
-    width: 50%;
-    margin: auto;
+    width: 100%;
 
     label {
         font-size: var(--size-1);
         color: var(--grey-0);
-        margin-bottom: 20px;
+        margin-bottom: 8px;
         display: block;
     }
 `

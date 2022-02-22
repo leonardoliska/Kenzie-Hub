@@ -7,11 +7,12 @@ import Select from "../../components/SelectInput"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
+import UpdateCardComponent from "../../components/UpdateCardComponent"
 
 const Home = () => {
     return (
         <>
-            <Button>Botão</Button>
+            {/* <Button>Botão</Button>
             <SmallButton>Botão</SmallButton>
             <SmallButton icon>+</SmallButton>
             <Input label="Nome" placeholder="Nome" />
@@ -19,7 +20,8 @@ const Home = () => {
             <Select label="teste" />
             <Card></Card>
             <Navbar></Navbar>
-            <Header></Header>
+            <Header></Header> */}
+            <UpdateCardComponent />
         </>
     )
 }

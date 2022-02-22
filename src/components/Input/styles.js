@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 8px;
 
     label {
         font-size: var(--size-1);
