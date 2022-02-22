@@ -4,6 +4,8 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+    padding-bottom: 10px;
 
     label {
         font-size: var(--size-1);
@@ -13,6 +15,9 @@ export const Container = styled.div`
     span {
         font-size: calc(var(--size-1) - 2px);
         color: var(--grey-1);
+        position: absolute;
+        left: 0;
+        top: 73px;
     }
 `
 
