@@ -5,7 +5,7 @@ import SelectInput from "../SelectInput"
 import Button from "../Button"
 import { useState } from "react"
 
-const UpdateCardComponent = () => {
+const UpdateCardComponent = ({ setUpdateTecnology }) => {
     const [inputValue, setInputValue] = useState("")
     const [selectValue, setSelectValue] = useState("")
 
@@ -16,7 +16,7 @@ const UpdateCardComponent = () => {
             <Container>
                 <TopContainer>
                     <h3>Detalhes da Tecnologia</h3>
-                    <button>X</button>
+                    <button onClick={() => setUpdateTecnology(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
                     <Input label="Nome do Projeto" setInputValue={setInputValue} value={inputValue} />
