@@ -14,7 +14,7 @@ export const Container = styled.div`
     h2 {
         text-align: center;
         color: var(--grey-0);
-        font-size: var(--size-2);
+        font-size: var(--size-3);
     }
 
     button + span {
