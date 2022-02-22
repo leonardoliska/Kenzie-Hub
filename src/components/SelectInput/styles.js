@@ -49,7 +49,11 @@ export const customStyles = {
         ...base,
         color: "var(--grey-0)",
     }),
-    indicatorSeparator: () => ({}),
+    placeholder: (base) => ({
+        ...base,
+        color: "var(--grey-1)",
+    }),
+    indicatorSeparator: (base) => ({}),
     dropdownIndicator: (base) => ({
         ...base,
         color: "var(--grey-1)",
