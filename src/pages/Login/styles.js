@@ -20,6 +20,7 @@ export const Container = styled.div`
     button + span {
         text-align: center;
         color: var(--grey-1);
+        padding: 10px 0 0;
         font-size: calc(var(--size-1) - 2px);
     }
 `
