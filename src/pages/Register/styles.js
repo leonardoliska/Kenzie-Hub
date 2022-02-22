@@ -44,6 +44,15 @@ export const Container = styled.div`
 
     @media (min-height: 700px) {
         padding: 25px 18px;
-        gap: 15px;
+        gap: 16px;
+
+        input,
+        button {
+            max-height: 48px;
+        }
+
+        button {
+            margin-top: 5px;
+        }
     }
 `
