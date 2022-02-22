@@ -23,7 +23,7 @@ export const InputContainer = styled.div`
         box-sizing: border-box;
         border: 2px solid transparent;
         border-radius: 4px;
-        padding: 11px 10% 11px 16px;
+        padding: 11px calc(14px + 7%) 11px 16px;
         background-color: var(--grey-2);
         font-size: var(--size-3);
         width: 100%;
