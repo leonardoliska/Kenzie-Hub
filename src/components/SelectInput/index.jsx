@@ -11,7 +11,12 @@ const SelectInput = ({ label, setSelectValue }) => {
     return (
         <Container>
             <label>{label}</label>
-            <Select styles={customStyles} options={options} onChange={(e) => setSelectValue(e.value)} />
+            <Select
+                styles={customStyles}
+                placeholder="Selecione"
+                options={options}
+                onChange={(e) => setSelectValue(e.value)}
+            />
         </Container>
     )
 }

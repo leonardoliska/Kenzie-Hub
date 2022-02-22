@@ -1,13 +1,13 @@
 import { Container } from "./styles"
 
-import Button from "../../components/Button"
+import { useState } from "react"
+
 import SmallButton from "../../components/SmallButton"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
 import UpdateCardComponent from "../../components/UpdateCardComponent"
 import CreateCardComponent from "../../components/CreateCardComponent"
-import { useState } from "react"
 
 const Dashboard = () => {
     const [addTecnology, setAddTecnology] = useState(false)

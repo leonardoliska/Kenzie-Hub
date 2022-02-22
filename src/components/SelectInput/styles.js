@@ -45,6 +45,10 @@ export const customStyles = {
             backgroundColor: "var(--grey-3)",
         },
     }),
+    input: (base) => ({
+        ...base,
+        color: "var(--grey-0)",
+    }),
     dropdownIndicator: (base) => ({
         ...base,
         color: "var(--grey-1)",
