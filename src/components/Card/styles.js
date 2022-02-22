@@ -20,11 +20,16 @@ const Container = styled.div`
     span {
         font-size: var(--size-1);
         color: var(--grey-1);
+        transition: 0.2s;
     }
 
     :hover {
         background-color: var(--grey-2);
         cursor: pointer;
+
+        span {
+            color: var(--grey-0);
+        }
     }
 `
 
