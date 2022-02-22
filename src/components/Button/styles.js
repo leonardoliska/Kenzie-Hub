@@ -2,8 +2,7 @@ import styled from "styled-components"
 
 const Container = styled.button`
     border-radius: 4px;
-    min-height: 48px;
-    flex: 1;
+    height: 48px;
     border: none;
     padding: 0 20px;
     font-size: var(--size-3);

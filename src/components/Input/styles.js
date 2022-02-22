@@ -17,7 +17,7 @@ export const Container = styled.div`
         color: var(--grey-1);
         position: absolute;
         left: 0;
-        top: 73px;
+        top: 90%;
     }
 `
 
@@ -47,7 +47,7 @@ export const InputContainer = styled.div`
 
     svg {
         position: absolute;
-        top: 17px;
+        top: 33.8%;
         right: 4%;
         color: var(--grey-1);
         cursor: pointer;
