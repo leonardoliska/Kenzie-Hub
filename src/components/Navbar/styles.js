@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const Container = styled.header`
-    height: 100px;
+    height: 72px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,7 +10,7 @@ const Container = styled.header`
     h1 {
         font-size: var(--size-4);
         font-weight: 700;
-        color: var(--grey-0);
+        color: var(--color-primary);
     }
 
     span {

@@ -3,7 +3,6 @@ import styled from "styled-components"
 const Container = styled.button`
     border-radius: 4px;
     height: 32px;
-    flex: 1;
     border: none;
     padding: ${(props) => (props.isIcon ? "0" : "0 16px")};
     ${(props) => props.isIcon && "width: 32px;"}
