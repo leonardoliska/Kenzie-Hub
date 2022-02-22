@@ -8,7 +8,7 @@ const Container = styled.header`
     border-bottom: 1px solid var(--grey-2);
     border-top: 1px solid var(--grey-2);
 
-    h1 {
+    h2 {
         font-size: var(--size-4);
         font-weight: 700;
         color: var(--grey-0);

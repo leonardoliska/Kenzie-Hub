@@ -2,7 +2,7 @@ import Container from "./styles"
 
 const Header = () => (
     <Container>
-        <h1>Olá, Leonardo</h1>
+        <h2>Olá, Leonardo</h2>
         <span>Introdução ao modulo 1</span>
     </Container>
 )
