@@ -19,7 +19,7 @@ const UpdateCardComponent = ({ setUpdateTecnology }) => {
                     <button onClick={() => setUpdateTecnology(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
-                    <Input label="Nome do Projeto" setInputValue={setInputValue} value={inputValue} />
+                    <Input label="Nome" setInputValue={setInputValue} value={inputValue} />
                     <SelectInput label="Selecionar Status" setSelectValue={setSelectValue} />
                     <ButtonContainer>
                         <Button isActive={isInputEmpty}>Salvar Alterações</Button>

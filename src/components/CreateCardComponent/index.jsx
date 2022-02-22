@@ -15,11 +15,11 @@ const CreateCardComponent = ({ setAddTecnology }) => {
         <Overlay>
             <Container>
                 <TopContainer>
-                    <h3>Detalhes da Tecnologia</h3>
+                    <h3>Cadastrar Tecnologia</h3>
                     <button onClick={() => setAddTecnology(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
-                    <Input label="Nome do Projeto" setInputValue={setInputValue} value={inputValue} />
+                    <Input label="Nome" setInputValue={setInputValue} value={inputValue} />
                     <SelectInput label="Selecionar Status" setSelectValue={setSelectValue} />
                     <Button isActive={isInputEmpty}>Cadastrar Tecnologia</Button>
                 </BottomContainer>
