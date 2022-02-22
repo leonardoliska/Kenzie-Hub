@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Container = styled.header`
+const Container = styled.nav`
     height: 72px;
     display: flex;
     justify-content: space-between;
