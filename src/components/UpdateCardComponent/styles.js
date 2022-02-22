@@ -40,11 +40,15 @@ export const TopContainer = styled.div`
 export const BottomContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 12px;
     background-color: var(--grey-3);
     padding: 22px;
     padding-bottom: 32px;
     border-radius: 0 0 4px 4px;
+
+    button {
+        margin-top: 10px;
+    }
 `
 
 export const ButtonContainer = styled.div`

@@ -7,7 +7,7 @@ export const Container = styled.div`
     label {
         font-size: var(--size-1);
         color: var(--grey-0);
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         display: block;
     }
 `

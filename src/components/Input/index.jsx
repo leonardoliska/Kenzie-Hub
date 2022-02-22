@@ -3,7 +3,7 @@ import { Container, InputContainer } from "./styles"
 import { AiFillEye } from "react-icons/ai"
 import { useState } from "react"
 
-const Input = ({ label, type = "text", setInputValue, ...rest }) => {
+const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
     const [inputType, setInputType] = useState(type)
 
     const handlePassword = () => {
@@ -17,7 +17,7 @@ const Input = ({ label, type = "text", setInputValue, ...rest }) => {
                 <input type={inputType} onChange={(e) => setInputValue(e.target.value)} {...rest}></input>
                 {type === "password" && <AiFillEye onClick={handlePassword} />}
             </InputContainer>
-            <span>erro</span>
+            {isErrored && <span>erro</span>}
         </Container>
     )
 }
