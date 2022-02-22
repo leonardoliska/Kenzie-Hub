@@ -9,17 +9,23 @@ const Container = styled.button`
     font-size: var(--size-3);
     font-weight: 500;
     transition: 0.2s;
-    background-color: ${(props) =>
-        props.colorSchema === "negative"
-            ? "var(--color-primary-negative)"
-            : props.colorSchema === "inactive"
-            ? "var(--grey-1)"
-            : "var(--color-primary)"};
+    background-color: ${(props) => (props.colorSchema === "grey" ? "var(--grey-3)" : "var(--color-primary)")};
 
-    :hover {
-        background-color: ${(props) =>
-            props.colorSchema === "inactive" ? "var(--grey-2)" : "var(--color-primary-focus)"};
-    }
+    ${(props) =>
+        props.colorSchema === "grey"
+            ? props.isActive
+                ? "{ background: var(--grey-1) }"
+                : "{ background: var(--grey-2) }"
+            : props.isActive
+            ? "{ background: var(--color-primary) }"
+            : "{ background: var(--color-primary-negative) }"}
+
+    ${(props) =>
+        props.isActive
+            ? props.colorSchema === "grey"
+                ? "&:hover { background: var(--grey-2) }"
+                : "&:hover { background: var(--color-primary-focus) }"
+            : "&:hover {cursor: auto"}
 `
 
 export default Container

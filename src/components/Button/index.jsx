@@ -1,8 +1,8 @@
 import Container from "./styles"
 
-const Button = ({ children, colorSchema, ...rest }) => {
+const Button = ({ children, colorSchema = "primary", isActive, ...rest }) => {
     return (
-        <Container {...rest} colorSchema={colorSchema}>
+        <Container colorSchema={colorSchema} isActive={isActive} {...rest}>
             {children}
         </Container>
     )
