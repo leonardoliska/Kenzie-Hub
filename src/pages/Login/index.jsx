@@ -24,7 +24,11 @@ const Login = () => {
 
     const handleLogin = (data) => {
         api.post("/sessions", data)
-            .then((response) => console.log(response))
+            .then((response) => {
+                localStorage.setItem("@kenziehub: token", response.data.token)
+                localStorage.setItem("@kenziehub: user", JSON.stringify(response.data.user))
+                console.log(response.data)
+            })
             .catch((error) => console.log(error))
     }
 
