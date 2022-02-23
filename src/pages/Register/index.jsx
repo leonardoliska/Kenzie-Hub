@@ -8,6 +8,8 @@ import Select from "../../components/SelectInput"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
 
+import api from "../../services/api"
+
 const Register = () => {
     const registerSchema = yup.object().shape({
         name: yup.string().required("Campo obrigatório"),
@@ -21,7 +23,7 @@ const Register = () => {
             .required("Campo obrigatório")
             .oneOf([yup.ref("password"), null], "As senhas precisam ser iguais"),
 
-        module: yup.object().shape({
+        course_module: yup.object().shape({
             value: yup.string().required("Selecione uma opção"),
         }),
     })
@@ -33,8 +35,20 @@ const Register = () => {
         formState: { errors },
     } = useForm({ resolver: yupResolver(registerSchema) })
 
-    const registerUser = (data) => {
+    const registerUser = ({ name, email, password, course_module: { value } }) => {
+        const data = {
+            name,
+            email,
+            password,
+            course_module: value,
+            bio: "null",
+            contact: "null",
+        }
         console.log(data)
+
+        api.post("/users", data)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
@@ -79,13 +93,39 @@ const Register = () => {
                 />
                 <Controller
                     control={control}
-                    name="module"
+                    name="course_module"
                     render={({ field: { name, value, onChange } }) => (
                         <Select
                             label="Selecionar Módulo"
                             name={name}
                             value={value}
                             error={errors.module?.value}
+                            options={[
+                                {
+                                    value: "Primeiro Módulo - Introdução ao Front-End",
+                                    label: "Primeiro Módulo - Introdução ao Front-End",
+                                },
+                                {
+                                    value: "Segundo Módulo - Front-End Intermediário",
+                                    label: "Segundo Módulo - Front-End Intermediário",
+                                },
+                                {
+                                    value: "Terceiro Módulo - Front-End Avançado",
+                                    label: "Terceiro Módulo - Front-End Avançado",
+                                },
+                                {
+                                    label: "Quarto Módulo - Introdução ao Back-End",
+                                    value: "Quarto Módulo - Introdução ao Back-End",
+                                },
+                                {
+                                    value: "Quinto Módulo - Back-End Avançado",
+                                    label: "Quinto Módulo - Back-End Avançado",
+                                },
+                                {
+                                    value: "Sexto Módulo - Inclusão no Mercado",
+                                    label: "Sexto Módulo - Inclusão no Mercado",
+                                },
+                            ]}
                             onChange={onChange}
                         />
                     )}
