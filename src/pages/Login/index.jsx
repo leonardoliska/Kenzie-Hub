@@ -1,21 +1,61 @@
+import { useForm } from "react-hook-form"
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+
 import { Container, HeaderContainer } from "./styles"
 
 import Button from "../../components/Button"
 import Input from "../../components/Input"
 
 const Login = () => {
+    const loginSchema = yup.object().shape({
+        email: yup.string().required("Campo obrigatório"),
+
+        password: yup.string().required("Campo obrigatório"),
+    })
+
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(loginSchema) })
+
+    const handleLogin = (data) => {
+        console.log(data)
+    }
+
+    const isFormErrored = Object.keys(errors).length === 0
+
     return (
         <>
             <HeaderContainer>
                 <h2>Kenzie Hub</h2>
             </HeaderContainer>
-            <Container>
+            <Container onSubmit={handleSubmit(handleLogin)}>
                 <h2>Login</h2>
-                <Input label="Email" type="email" placeholder="Digite seu e-mail" />
-                <Input label="Password" type="password" placeholder="Digite sua senha" />
-                <Button>Entrar</Button>
+                <Input
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="Digite seu e-mail"
+                    register={register}
+                    error={errors.email}
+                />
+                <Input
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Digite sua senha"
+                    register={register}
+                    error={errors.password}
+                />
+                <Button isActive={isFormErrored} type="submit">
+                    Entrar
+                </Button>
                 <span>Ainda não possui uma conta?</span>
-                <Button colorSchema="grey">Cadastrar</Button>
+                <Button colorSchema="grey" type="button">
+                    Cadastrar
+                </Button>
             </Container>
         </>
     )
