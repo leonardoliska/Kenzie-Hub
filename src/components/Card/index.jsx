@@ -1,8 +1,8 @@
 import Container from "./styles"
 
-const Card = ({ setUpdateTecnology }) => {
+const Card = ({ setUpdateTecnologyPopUp }) => {
     return (
-        <Container onClick={() => setUpdateTecnology(true)}>
+        <Container onClick={() => setUpdateTecnologyPopUp(true)}>
             <h3>Material Ui</h3>
             <span>Intermediario</span>
         </Container>

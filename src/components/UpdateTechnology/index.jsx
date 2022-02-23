@@ -8,7 +8,7 @@ import Input from "../Input"
 import Select from "../SelectInput"
 import Button from "../Button"
 
-const UpdateCardComponent = ({ setUpdateTecnology }) => {
+const UpdateTechnology = ({ setUpdateTecnologyPopUp }) => {
     const updateSchema = yup.object().shape({
         name: yup.string().required("Campo obrigatório"),
 
@@ -36,7 +36,7 @@ const UpdateCardComponent = ({ setUpdateTecnology }) => {
             <Container onSubmit={handleSubmit(handleTechnology)}>
                 <TopContainer>
                     <h3>Detalhes da Tecnologia</h3>
-                    <button onClick={() => setUpdateTecnology(false)}>X</button>
+                    <button onClick={() => setUpdateTecnologyPopUp(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
                     <Input
@@ -73,4 +73,4 @@ const UpdateCardComponent = ({ setUpdateTecnology }) => {
     )
 }
 
-export default UpdateCardComponent
+export default UpdateTechnology

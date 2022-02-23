@@ -6,17 +6,17 @@ import SmallButton from "../../components/SmallButton"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
-import UpdateCardComponent from "../../components/UpdateCardComponent"
+import UpdateTechnology from "../../components/UpdateTechnology"
 import AddTechnology from "../../components/AddTechnology"
 
 const Dashboard = () => {
     const [addTecnologyPopUp, setAddTecnologyPopUp] = useState(false)
-    const [updateTecnology, setUpdateTecnology] = useState(false)
+    const [updateTecnologyPopUp, setUpdateTecnologyPopUp] = useState(false)
 
     return (
         <Container>
             {addTecnologyPopUp && <AddTechnology setAddTecnologyPopUp={setAddTecnologyPopUp} />}
-            {updateTecnology && <UpdateCardComponent setUpdateTecnology={setUpdateTecnology} />}
+            {updateTecnologyPopUp && <UpdateTechnology setUpdateTecnologyPopUp={setUpdateTecnologyPopUp} />}
             <Navbar />
             <Header />
             <aside>
@@ -26,9 +26,9 @@ const Dashboard = () => {
                 </SmallButton>
             </aside>
             <main>
-                <Card setUpdateTecnology={setUpdateTecnology}></Card>
-                <Card setUpdateTecnology={setUpdateTecnology}></Card>
-                <Card setUpdateTecnology={setUpdateTecnology}></Card>
+                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
+                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
+                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
             </main>
         </Container>
     )
