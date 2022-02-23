@@ -22,7 +22,7 @@ const Register = () => {
             .oneOf([yup.ref("password"), null], "As senhas precisam ser iguais"),
 
         module: yup.object().shape({
-            value: yup.string().required("Campo obrigatório"),
+            value: yup.string().required("Selecione uma opção"),
         }),
     })
 
