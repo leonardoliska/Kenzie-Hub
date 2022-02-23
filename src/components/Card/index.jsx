@@ -1,16 +1,16 @@
 import Container from "./styles"
 
-const Card = ({ setUpdateTecnologyPopUp, setTechnologyName, setTechnologyStatus }) => {
+const Card = ({ status, title, setUpdateTecnologyPopUp, setTechnologyName, setTechnologyStatus }) => {
     return (
         <Container
             onClick={() => {
                 setUpdateTecnologyPopUp(true)
-                setTechnologyName("Material Ui")
-                setTechnologyStatus("Intermediário")
+                setTechnologyName(title)
+                setTechnologyStatus(status)
             }}
         >
-            <h3>Material Ui</h3>
-            <span>Intermediário</span>
+            <h3>{title}</h3>
+            <span>{status}</span>
         </Container>
     )
 }
