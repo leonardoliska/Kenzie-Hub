@@ -11,7 +11,7 @@ import Button from "../Button"
 
 import api from "../../services/api"
 
-const AddTechnology = ({ setAddTecnologyPopUp }) => {
+const AddTechnology = ({ setAddTecnologyPopUp, userTechnologies, setUserTechnologies }) => {
     const [token] = useState(localStorage.getItem("@kenziehub: token") || "")
 
     const formSchema = yup.object().shape({
@@ -37,7 +37,10 @@ const AddTechnology = ({ setAddTecnologyPopUp }) => {
                 Authorization: `Bearer ${token}`,
             },
         })
-            .then((response) => console.log(response))
+            .then((response) => {
+                setUserTechnologies([...userTechnologies, response.data])
+                setAddTecnologyPopUp(false)
+            })
             .catch((error) => console.log(error))
     }
 
