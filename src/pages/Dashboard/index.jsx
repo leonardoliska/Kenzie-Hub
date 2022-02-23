@@ -12,11 +12,19 @@ import AddTechnology from "../../components/AddTechnology"
 const Dashboard = () => {
     const [addTecnologyPopUp, setAddTecnologyPopUp] = useState(false)
     const [updateTecnologyPopUp, setUpdateTecnologyPopUp] = useState(false)
+    const [technologyName, setTechnologyName] = useState("")
+    const [technologyStatus, setTechnologyStatus] = useState("")
 
     return (
         <Container>
             {addTecnologyPopUp && <AddTechnology setAddTecnologyPopUp={setAddTecnologyPopUp} />}
-            {updateTecnologyPopUp && <UpdateTechnology setUpdateTecnologyPopUp={setUpdateTecnologyPopUp} />}
+            {updateTecnologyPopUp && (
+                <UpdateTechnology
+                    setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}
+                    technologyName={technologyName}
+                    technologyStatus={technologyStatus}
+                />
+            )}
             <Navbar />
             <Header />
             <aside>
@@ -26,9 +34,11 @@ const Dashboard = () => {
                 </SmallButton>
             </aside>
             <main>
-                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
-                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
-                <Card setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}></Card>
+                <Card
+                    setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}
+                    setTechnologyName={setTechnologyName}
+                    setTechnologyStatus={setTechnologyStatus}
+                />
             </main>
         </Container>
     )

@@ -8,25 +8,38 @@ import Input from "../Input"
 import Select from "../SelectInput"
 import Button from "../Button"
 
-const UpdateTechnology = ({ setUpdateTecnologyPopUp }) => {
+const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyStatus }) => {
     const updateSchema = yup.object().shape({
-        name: yup.string().required("Campo obrigatório"),
+        title: yup.string().required("Campo obrigatório"),
 
-        module: yup.object().shape({
-            value: yup.string().required("Selecione uma opção"),
+        status: yup.object().shape({
+            value: yup
+                .string()
+                .required("Selecione uma opção")
+                .notOneOf([technologyStatus], "Selecione uma opção diferente da atual"),
         }),
     })
+
+    console.log(technologyStatus)
 
     const {
         handleSubmit,
         register,
         control,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(updateSchema) })
+    } = useForm({
+        resolver: yupResolver(updateSchema),
+        defaultValues: {
+            title: technologyName,
+            status: { value: technologyStatus, label: technologyStatus },
+        },
+    })
 
-    const handleTechnology = ({ name, module: { value } }, event) => {
+    const handleTechnology = ({ title, status: { value } }, event) => {
         const updateOption = event.nativeEvent.submitter.value
-        const data = { name, value }
+        const data = { title, status: value }
+
+        console.log(data)
     }
 
     const isFormErrored = Object.keys(errors).length === 0
@@ -41,21 +54,36 @@ const UpdateTechnology = ({ setUpdateTecnologyPopUp }) => {
                 <BottomContainer>
                     <Input
                         label="Nome"
-                        name="name"
+                        name="title"
                         placeholder="Nome da tecnologia"
                         register={register}
-                        error={errors.name}
+                        error={errors.title}
+                        disabled
                     />
                     <Controller
                         control={control}
-                        name="module"
+                        name="status"
                         render={({ field: { name, value, onChange } }) => (
                             <Select
                                 label="Selecionar Status"
                                 name={name}
-                                value={value}
-                                error={errors.module?.value}
+                                error={errors.status?.value}
+                                defaultValue={{ value: technologyStatus, label: technologyStatus }}
                                 onChange={onChange}
+                                options={[
+                                    {
+                                        value: "Iniciante",
+                                        label: "Iniciante",
+                                    },
+                                    {
+                                        value: "Intermediário",
+                                        label: "Intermediário",
+                                    },
+                                    {
+                                        value: "Avançado",
+                                        label: "Avançado",
+                                    },
+                                ]}
                             />
                         )}
                     />
