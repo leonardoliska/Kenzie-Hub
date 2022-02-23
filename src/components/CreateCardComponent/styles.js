@@ -7,7 +7,7 @@ export const Overlay = styled.div`
     width: 100vw;
 `
 
-export const Container = styled.div`
+export const Container = styled.form`
     position: absolute;
     width: min(90%, 400px);
     top: 50%;

@@ -26,7 +26,6 @@ const UpdateCardComponent = ({ setUpdateTecnology }) => {
 
     const handleTechnology = ({ name, module: { value } }, event) => {
         const updateOption = event.nativeEvent.submitter.value
-
         const data = { name, value }
     }
 

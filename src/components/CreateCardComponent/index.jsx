@@ -1,27 +1,65 @@
+import { useForm, Controller } from "react-hook-form"
+import * as yup from "yup"
+import { yupResolver } from "@hookform/resolvers/yup"
+
 import { Overlay, Container, TopContainer, BottomContainer } from "./styles"
 
 import Input from "../Input"
-import SelectInput from "../SelectInput"
+import Select from "../SelectInput"
 import Button from "../Button"
-import { useState } from "react"
 
 const CreateCardComponent = ({ setAddTecnology }) => {
-    const [inputValue, setInputValue] = useState("")
-    const [selectValue, setSelectValue] = useState("")
+    const updateSchema = yup.object().shape({
+        name: yup.string().required("Campo obrigatório"),
 
-    const isInputEmpty = !!inputValue && !!selectValue
+        module: yup.object().shape({
+            value: yup.string().required("Selecione uma opção"),
+        }),
+    })
+
+    const {
+        handleSubmit,
+        register,
+        control,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(updateSchema) })
+
+    const handleTechnology = ({ name, module: { value } }) => {
+        const data = { name, value }
+        console.log(data)
+    }
+
+    const isFormErrored = Object.keys(errors).length === 0
 
     return (
         <Overlay>
-            <Container>
+            <Container onSubmit={handleSubmit(handleTechnology)}>
                 <TopContainer>
                     <h3>Cadastrar Tecnologia</h3>
                     <button onClick={() => setAddTecnology(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
-                    <Input label="Nome" setInputValue={setInputValue} value={inputValue} />
-                    <SelectInput label="Selecionar Status" setSelectValue={setSelectValue} />
-                    <Button isActive={isInputEmpty}>Cadastrar Tecnologia</Button>
+                    <Input
+                        label="Nome"
+                        name="name"
+                        placeholder="Nome da tecnologia"
+                        register={register}
+                        error={errors.name}
+                    />
+                    <Controller
+                        control={control}
+                        name="module"
+                        render={({ field: { name, value, onChange } }) => (
+                            <Select
+                                label="Selecionar Status"
+                                name={name}
+                                value={value}
+                                error={errors.module?.value}
+                                onChange={onChange}
+                            />
+                        )}
+                    />
+                    <Button isActive={isFormErrored}>Cadastrar Tecnologia</Button>
                 </BottomContainer>
             </Container>
         </Overlay>
