@@ -7,8 +7,17 @@ import { Overlay, Container, TopContainer, BottomContainer, ButtonContainer } fr
 import Input from "../Input"
 import Select from "../SelectInput"
 import Button from "../Button"
+import axios from "axios"
+import api from "../../services/api"
 
-const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyStatus }) => {
+const UpdateTechnology = ({
+    setUpdateTecnologyPopUp,
+    technologyName,
+    technologyStatus,
+    setUserTechnologies,
+    userTechnologies,
+    token,
+}) => {
     const updateSchema = yup.object().shape({
         title: yup.string().required("Campo obrigatório"),
 
@@ -35,10 +44,21 @@ const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyS
 
         console.log(data)
     }
-    const deleteTechnology = ({ title, status: { value } }) => {
-        const data = { title, status: value }
+    const deleteTechnology = ({ title }) => {
+        const foundTechnology = userTechnologies.find((technology) => technology.title === title)
+        const id = foundTechnology.id
 
-        console.log(data)
+        api.delete(`/users/techs/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((response) => {
+                const newTechnologies = userTechnologies.filter((technology) => technology !== foundTechnology)
+                setUpdateTecnologyPopUp(false)
+                setUserTechnologies(newTechnologies)
+            })
+            .catch((error) => console.log(error))
     }
 
     const isFormErrored = Object.keys(errors).length === 0

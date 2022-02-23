@@ -17,6 +17,7 @@ const Dashboard = () => {
     const [technologyName, setTechnologyName] = useState("")
     const [technologyStatus, setTechnologyStatus] = useState("")
     const [userTechnologies, setUserTechnologies] = useState([])
+    const [token] = useState(localStorage.getItem("@kenziehub: token") || "")
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("@kenziehub: user")) || ""
@@ -32,6 +33,7 @@ const Dashboard = () => {
                     setAddTecnologyPopUp={setAddTecnologyPopUp}
                     setUserTechnologies={setUserTechnologies}
                     userTechnologies={userTechnologies}
+                    token={token}
                 />
             )}
 
@@ -40,6 +42,9 @@ const Dashboard = () => {
                     setUpdateTecnologyPopUp={setUpdateTecnologyPopUp}
                     technologyName={technologyName}
                     technologyStatus={technologyStatus}
+                    setUserTechnologies={setUserTechnologies}
+                    userTechnologies={userTechnologies}
+                    token={token}
                 />
             )}
             <Navbar />
@@ -51,7 +56,7 @@ const Dashboard = () => {
                 </SmallButton>
             </aside>
 
-            {!!userTechnologies && (
+            {userTechnologies.length > 0 && (
                 <main>
                     {userTechnologies.map((technology) => (
                         <Card

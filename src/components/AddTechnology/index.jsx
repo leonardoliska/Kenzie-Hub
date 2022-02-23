@@ -11,9 +11,7 @@ import Button from "../Button"
 
 import api from "../../services/api"
 
-const AddTechnology = ({ setAddTecnologyPopUp, userTechnologies, setUserTechnologies }) => {
-    const [token] = useState(localStorage.getItem("@kenziehub: token") || "")
-
+const AddTechnology = ({ setAddTecnologyPopUp, userTechnologies, setUserTechnologies, token }) => {
     const formSchema = yup.object().shape({
         title: yup.string().required("Campo obrigatório"),
 
