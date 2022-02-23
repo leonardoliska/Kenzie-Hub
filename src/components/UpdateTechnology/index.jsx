@@ -7,7 +7,6 @@ import { Overlay, Container, TopContainer, BottomContainer, ButtonContainer } fr
 import Input from "../Input"
 import Select from "../SelectInput"
 import Button from "../Button"
-import axios from "axios"
 import api from "../../services/api"
 
 const UpdateTechnology = ({
@@ -39,11 +38,30 @@ const UpdateTechnology = ({
         },
     })
 
-    const updateTechnology = ({ title, status: { value } }) => {
-        const data = { title, status: value }
+    const updateTechnology = ({ title, status }) => {
+        const foundTechnology = userTechnologies.find((technology) => technology.title === title)
+        const id = foundTechnology.id
 
-        console.log(data)
+        const data = { status: status.value }
+
+        api.put(`/users/techs/${id}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((response) => {
+                const updatedTechnologies = userTechnologies.map((technology) => {
+                    if (technology.title === title) {
+                        technology["status"] = status.value
+                    }
+                    return technology
+                })
+                setUserTechnologies(updatedTechnologies)
+                setUpdateTecnologyPopUp(false)
+            })
+            .catch((error) => console.log(error.message))
     }
+
     const deleteTechnology = ({ title }) => {
         const foundTechnology = userTechnologies.find((technology) => technology.title === title)
         const id = foundTechnology.id
@@ -62,6 +80,8 @@ const UpdateTechnology = ({
     }
 
     const isFormErrored = Object.keys(errors).length === 0
+
+    const isDeleteOptionValid = 
 
     return (
         <Overlay>
