@@ -32,6 +32,7 @@ export const InputContainer = styled.div`
         background-color: var(--grey-2);
         font-size: var(--size-3);
         width: 100%;
+        transition: 0.2s;
 
         ::placeholder {
             color: var(--grey-1);
@@ -51,5 +52,10 @@ export const InputContainer = styled.div`
         right: 4%;
         color: var(--grey-1);
         cursor: pointer;
+        transition: 0.2s;
+
+        &:hover {
+            color: var(--grey-0);
+        }
     }
 `

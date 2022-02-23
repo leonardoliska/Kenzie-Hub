@@ -3,7 +3,7 @@ import { Container, InputContainer } from "./styles"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useState } from "react"
 
-const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
+const Input = ({ label, type = "text", error, setInputValue, register, name, ...rest }) => {
     const [inputType, setInputType] = useState(type)
 
     const handlePassword = () => {
@@ -14,7 +14,12 @@ const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
         <Container>
             <label>{label}</label>
             <InputContainer>
-                <input type={inputType} onChange={(e) => setInputValue(e.target.value)} {...rest}></input>
+                <input
+                    type={inputType}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    {...register(name)}
+                    {...rest}
+                ></input>
                 {type === "password" &&
                     (inputType === "password" ? (
                         <AiOutlineEyeInvisible onClick={handlePassword} />
@@ -22,7 +27,7 @@ const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
                         <AiOutlineEye onClick={handlePassword} />
                     ))}
             </InputContainer>
-            {isErrored && <span>erro</span>}
+            {error && <span>{error.message}</span>}
         </Container>
     )
 }
