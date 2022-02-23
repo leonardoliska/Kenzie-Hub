@@ -13,14 +13,9 @@ const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyS
         title: yup.string().required("Campo obrigatório"),
 
         status: yup.object().shape({
-            value: yup
-                .string()
-                .required("Selecione uma opção")
-                .notOneOf([technologyStatus], "Selecione uma opção diferente da atual"),
+            value: yup.string().required("Selecione uma opção"),
         }),
     })
-
-    console.log(technologyStatus)
 
     const {
         handleSubmit,
@@ -35,8 +30,12 @@ const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyS
         },
     })
 
-    const handleTechnology = ({ title, status: { value } }, event) => {
-        const updateOption = event.nativeEvent.submitter.value
+    const updateTechnology = ({ title, status: { value } }) => {
+        const data = { title, status: value }
+
+        console.log(data)
+    }
+    const deleteTechnology = ({ title, status: { value } }) => {
         const data = { title, status: value }
 
         console.log(data)
@@ -46,52 +45,60 @@ const UpdateTechnology = ({ setUpdateTecnologyPopUp, technologyName, technologyS
 
     return (
         <Overlay>
-            <Container onSubmit={handleSubmit(handleTechnology)}>
+            <Container>
                 <TopContainer>
                     <h3>Detalhes da Tecnologia</h3>
                     <button onClick={() => setUpdateTecnologyPopUp(false)}>X</button>
                 </TopContainer>
                 <BottomContainer>
-                    <Input
-                        label="Nome"
-                        name="title"
-                        placeholder="Nome da tecnologia"
-                        register={register}
-                        error={errors.title}
-                        disabled
-                    />
-                    <Controller
-                        control={control}
-                        name="status"
-                        render={({ field: { name, value, onChange } }) => (
-                            <Select
-                                label="Selecionar Status"
-                                name={name}
-                                error={errors.status?.value}
-                                defaultValue={{ value: technologyStatus, label: technologyStatus }}
-                                onChange={onChange}
-                                options={[
-                                    {
-                                        value: "Iniciante",
-                                        label: "Iniciante",
-                                    },
-                                    {
-                                        value: "Intermediário",
-                                        label: "Intermediário",
-                                    },
-                                    {
-                                        value: "Avançado",
-                                        label: "Avançado",
-                                    },
-                                ]}
-                            />
-                        )}
-                    />
+                    <form>
+                        <Input
+                            label="Nome"
+                            name="title"
+                            placeholder="Nome da tecnologia"
+                            register={register}
+                            error={errors.title}
+                            disabled
+                        />
+                        <Controller
+                            control={control}
+                            name="status"
+                            render={({ field: { name, onChange } }) => (
+                                <Select
+                                    label="Selecionar Status"
+                                    name={name}
+                                    error={errors.status?.value}
+                                    defaultValue={{ value: technologyStatus, label: technologyStatus }}
+                                    onChange={onChange}
+                                    options={[
+                                        {
+                                            value: "Iniciante",
+                                            label: "Iniciante",
+                                        },
+                                        {
+                                            value: "Intermediário",
+                                            label: "Intermediário",
+                                        },
+                                        {
+                                            value: "Avançado",
+                                            label: "Avançado",
+                                        },
+                                    ]}
+                                />
+                            )}
+                        />
+                    </form>
+
                     <ButtonContainer>
-                        <Button isActive={isFormErrored} value="update">
+                        <Button isActive={isFormErrored} value="update" onClick={handleSubmit(updateTechnology)}>
                             Salvar Alterações
                         </Button>
-                        <Button isActive={isFormErrored} colorSchema="grey" value="delete">
+                        <Button
+                            isActive={isFormErrored}
+                            colorSchema="grey"
+                            value="delete"
+                            onClick={handleSubmit(deleteTechnology)}
+                        >
                             Excluir
                         </Button>
                     </ButtonContainer>

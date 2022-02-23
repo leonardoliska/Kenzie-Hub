@@ -10,7 +10,7 @@ const Card = ({ setUpdateTecnologyPopUp, setTechnologyName, setTechnologyStatus 
             }}
         >
             <h3>Material Ui</h3>
-            <span>Intermediario</span>
+            <span>Intermediário</span>
         </Container>
     )
 }
