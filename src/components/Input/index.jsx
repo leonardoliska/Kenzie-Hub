@@ -1,6 +1,6 @@
 import { Container, InputContainer } from "./styles"
 
-import { AiFillEye } from "react-icons/ai"
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useState } from "react"
 
 const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
@@ -15,7 +15,12 @@ const Input = ({ label, type = "text", isErrored, setInputValue, ...rest }) => {
             <label>{label}</label>
             <InputContainer>
                 <input type={inputType} onChange={(e) => setInputValue(e.target.value)} {...rest}></input>
-                {type === "password" && <AiFillEye onClick={handlePassword} />}
+                {type === "password" &&
+                    (inputType === "password" ? (
+                        <AiOutlineEyeInvisible onClick={handlePassword} />
+                    ) : (
+                        <AiOutlineEye onClick={handlePassword} />
+                    ))}
             </InputContainer>
             {isErrored && <span>erro</span>}
         </Container>
