@@ -3,12 +3,21 @@ import styled from "styled-components"
 export const Container = styled.div`
     position: relative;
     width: 100%;
+    padding-bottom: 10px;
 
     label {
         font-size: var(--size-1);
         color: var(--grey-0);
         margin-bottom: 12px;
         display: block;
+    }
+
+    span {
+        font-size: calc(var(--size-1) - 2px);
+        color: var(--grey-1);
+        position: absolute;
+        left: 0;
+        top: 90%;
     }
 `
 

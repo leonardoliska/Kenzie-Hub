@@ -12,7 +12,7 @@ export const Nav = styled(Navbar)`
     }
 `
 
-export const Container = styled.div`
+export const Container = styled.form`
     width: min(95%, 370px);
     margin: auto;
     background: var(--grey-3);
