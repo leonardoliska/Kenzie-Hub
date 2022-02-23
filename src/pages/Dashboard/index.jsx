@@ -7,21 +7,21 @@ import Card from "../../components/Card"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
 import UpdateCardComponent from "../../components/UpdateCardComponent"
-import CreateCardComponent from "../../components/CreateCardComponent"
+import AddTechnology from "../../components/AddTechnology"
 
 const Dashboard = () => {
-    const [addTecnology, setAddTecnology] = useState(false)
+    const [addTecnologyPopUp, setAddTecnologyPopUp] = useState(false)
     const [updateTecnology, setUpdateTecnology] = useState(false)
 
     return (
         <Container>
-            {addTecnology && <CreateCardComponent setAddTecnology={setAddTecnology} />}
+            {addTecnologyPopUp && <AddTechnology setAddTecnologyPopUp={setAddTecnologyPopUp} />}
             {updateTecnology && <UpdateCardComponent setUpdateTecnology={setUpdateTecnology} />}
             <Navbar />
             <Header />
             <aside>
                 <h3>Tecnologias</h3>
-                <SmallButton icon onClick={() => setAddTecnology(true)}>
+                <SmallButton icon onClick={() => setAddTecnologyPopUp(true)}>
                     +
                 </SmallButton>
             </aside>
