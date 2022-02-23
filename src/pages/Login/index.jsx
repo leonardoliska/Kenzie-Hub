@@ -7,6 +7,8 @@ import { Container, HeaderContainer } from "./styles"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
 
+import api from "../../services/api"
+
 const Login = () => {
     const loginSchema = yup.object().shape({
         email: yup.string().required("Campo obrigatório"),
@@ -21,7 +23,9 @@ const Login = () => {
     } = useForm({ resolver: yupResolver(loginSchema) })
 
     const handleLogin = (data) => {
-        console.log(data)
+        api.post("/sessions", data)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
