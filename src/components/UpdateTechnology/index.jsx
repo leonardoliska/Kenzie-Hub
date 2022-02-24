@@ -1,6 +1,7 @@
 import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useState } from "react"
 
 import { Overlay, Container, TopContainer, BottomContainer, ButtonContainer } from "./styles"
 
@@ -79,9 +80,10 @@ const UpdateTechnology = ({
             .catch((error) => console.log(error))
     }
 
+    const [currentSelectValue, setCurrentSelectValue] = useState(technologyStatus)
     const isFormErrored = Object.keys(errors).length === 0
-
-    const isDeleteOptionValid = 
+    const isDeleteOptionValid = currentSelectValue === technologyStatus
+    const isUpdateOptionValid = !isDeleteOptionValid
 
     return (
         <Overlay>
@@ -109,7 +111,10 @@ const UpdateTechnology = ({
                                     name={name}
                                     error={errors.status?.value}
                                     defaultValue={{ value: technologyStatus, label: technologyStatus }}
-                                    onChange={onChange}
+                                    onChange={(e) => {
+                                        onChange(e)
+                                        setCurrentSelectValue(e.value)
+                                    }}
                                     options={[
                                         {
                                             value: "Iniciante",
@@ -130,13 +135,15 @@ const UpdateTechnology = ({
                     </form>
 
                     <ButtonContainer>
-                        <Button isActive={isFormErrored} value="update" onClick={handleSubmit(updateTechnology)}>
+                        <Button
+                            isActive={isFormErrored && isUpdateOptionValid}
+                            onClick={handleSubmit(updateTechnology)}
+                        >
                             Salvar Alterações
                         </Button>
                         <Button
-                            isActive={isFormErrored}
+                            isActive={isFormErrored && isDeleteOptionValid}
                             colorSchema="grey"
-                            value="delete"
                             onClick={handleSubmit(deleteTechnology)}
                         >
                             Excluir
