@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 import { Overlay, Container, TopContainer, BottomContainer } from "./styles"
 
@@ -39,7 +40,7 @@ const AddTechnology = ({ setAddTecnologyPopUp, userTechnologies, setUserTechnolo
                 setUserTechnologies([...userTechnologies, response.data])
                 setAddTecnologyPopUp(false)
             })
-            .catch((error) => console.log(error))
+            .catch((error) => toast.error("Tecnologia já cadastrada"))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
