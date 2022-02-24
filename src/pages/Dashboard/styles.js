@@ -6,11 +6,11 @@ export const Container = styled.div`
         margin: 0 auto;
     }
     header {
-        padding: 0 5%;
+        padding: min(5vh, 20px) 5%;
         box-sizing: border-box;
 
         @media (min-width: 889px) {
-            padding: 0 calc(calc(100% - 800px) / 2);
+            padding: min(5vh, 30px) calc(calc(100% - 800px) / 2);
         }
     }
 

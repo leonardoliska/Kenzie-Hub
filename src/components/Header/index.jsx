@@ -1,10 +1,14 @@
 import Container from "./styles"
 
-const Header = () => (
-    <Container>
-        <h2>Olá, Leonardo</h2>
-        <span>Introdução ao modulo 1</span>
-    </Container>
-)
+const Header = () => {
+    const { name, course_module } = JSON.parse(localStorage.getItem("@kenziehub: user"))
+
+    return (
+        <Container>
+            <h2>Olá, {name}</h2>
+            <span>{course_module}</span>
+        </Container>
+    )
+}
 
 export default Header
