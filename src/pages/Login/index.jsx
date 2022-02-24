@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Redirect, useHistory } from "react-router-dom"
+import { toast } from "react-toastify"
 
 import { Container, HeaderContainer } from "./styles"
 
@@ -33,7 +34,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                 setIsAuthenticated(true)
                 history.push("/")
             })
-            .catch((error) => console.log(error))
+            .catch((error) => toast.error("Usuário ou senha incorretos"))
     }
 
     const isFormErrored = Object.keys(errors).length === 0

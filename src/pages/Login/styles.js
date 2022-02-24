@@ -26,12 +26,16 @@ export const Container = styled.form`
 `
 
 export const HeaderContainer = styled.header`
-    margin-top: 80px;
+    margin-top: 20px;
     color: var(--color-primary);
     text-align: center;
 
     h1 {
         font-size: var(--size-2);
         font-weight: 700;
+    }
+
+    @media (min-height: 670px) {
+        margin-top: 80px;
     }
 `

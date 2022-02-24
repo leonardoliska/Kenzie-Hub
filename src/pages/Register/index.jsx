@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Redirect, useHistory } from "react-router-dom"
+import { toast } from "react-toastify"
 
 import { Container, Nav } from "./styles"
 
@@ -38,7 +39,7 @@ const Register = ({ isAuthenticated }) => {
 
     const history = useHistory()
 
-    const registerUser = ({ name, email, password, course_module: { value } }) => {
+    const onSubmit = async ({ name, email, password, course_module: { value } }) => {
         const data = {
             name,
             email,
@@ -49,8 +50,11 @@ const Register = ({ isAuthenticated }) => {
         }
 
         api.post("/users", data)
-            .then((response) => history.push("/login"))
-            .catch((error) => console.log(error))
+            .then((response) => {
+                toast.success("Conta cadastrada com sucesso")
+                history.push("/login")
+            })
+            .catch((error) => toast.error("Não foi possível cadastrar a conta com esse email"))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
@@ -62,7 +66,7 @@ const Register = ({ isAuthenticated }) => {
     return (
         <>
             <Nav buttonName="Voltar" />
-            <Container onSubmit={handleSubmit(registerUser)}>
+            <Container onSubmit={handleSubmit(onSubmit)}>
                 <h2>Crie sua conta</h2>
                 <span>Rápido e grátis, vamos nessa!</span>
                 <Input
@@ -105,7 +109,7 @@ const Register = ({ isAuthenticated }) => {
                             label="Selecionar Módulo"
                             name={name}
                             value={value}
-                            error={errors.module?.value}
+                            error={errors.course_module?.value}
                             options={[
                                 {
                                     value: "Primeiro Módulo - Introdução ao Front-End",

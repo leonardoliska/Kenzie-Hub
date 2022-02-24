@@ -14,7 +14,7 @@ export const Container = styled.div`
 
     span {
         font-size: calc(var(--size-1) - 2px);
-        color: var(--grey-1);
+        color: var(--error);
         position: absolute;
         left: 0;
         top: 90%;
