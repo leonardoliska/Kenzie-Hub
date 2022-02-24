@@ -1,6 +1,7 @@
 import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { Redirect, useHistory } from "react-router-dom"
 
 import { Container, Nav } from "./styles"
 
@@ -10,7 +11,7 @@ import Input from "../../components/Input"
 
 import api from "../../services/api"
 
-const Register = () => {
+const Register = ({ isAuthenticated }) => {
     const registerSchema = yup.object().shape({
         name: yup.string().required("Campo obrigatório"),
 
@@ -35,6 +36,8 @@ const Register = () => {
         formState: { errors },
     } = useForm({ resolver: yupResolver(registerSchema) })
 
+    const history = useHistory()
+
     const registerUser = ({ name, email, password, course_module: { value } }) => {
         const data = {
             name,
@@ -46,15 +49,19 @@ const Register = () => {
         }
 
         api.post("/users", data)
-            .then((response) => console.log(response))
+            .then((response) => history.push("/login"))
             .catch((error) => console.log(error))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
 
+    if (isAuthenticated) {
+        return <Redirect to="/" />
+    }
+
     return (
         <>
-            <Nav />
+            <Nav buttonName="Voltar" />
             <Container onSubmit={handleSubmit(registerUser)}>
                 <h2>Crie sua conta</h2>
                 <span>Rápido e grátis, vamos nessa!</span>

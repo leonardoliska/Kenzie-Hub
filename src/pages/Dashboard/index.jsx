@@ -1,6 +1,7 @@
-import { Container } from "./styles"
-
+import { Redirect } from "react-router-dom"
 import { useState } from "react"
+
+import { Container } from "./styles"
 
 import SmallButton from "../../components/SmallButton"
 import Card from "../../components/Card"
@@ -11,13 +12,13 @@ import AddTechnology from "../../components/AddTechnology"
 import { useEffect } from "react"
 import api from "../../services/api"
 
-const Dashboard = () => {
+const Dashboard = ({ isAuthenticated, setIsAuthenticated }) => {
     const [addTecnologyPopUp, setAddTecnologyPopUp] = useState(false)
     const [updateTecnologyPopUp, setUpdateTecnologyPopUp] = useState(false)
     const [technologyName, setTechnologyName] = useState("")
     const [technologyStatus, setTechnologyStatus] = useState("")
     const [userTechnologies, setUserTechnologies] = useState([])
-    const [token] = useState(localStorage.getItem("@kenziehub: token") || "")
+    const token = localStorage.getItem("@kenziehub: token")
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("@kenziehub: user")) || ""
@@ -25,6 +26,10 @@ const Dashboard = () => {
 
         api.get(`/users/${userId}`).then((response) => setUserTechnologies(response.data.techs))
     }, [])
+
+    if (!isAuthenticated) {
+        return <Redirect to="/login" />
+    }
 
     return (
         <Container>
@@ -47,7 +52,7 @@ const Dashboard = () => {
                     token={token}
                 />
             )}
-            <Navbar />
+            <Navbar setIsAuthenticated={setIsAuthenticated} />
             <Header />
             <aside>
                 <h3>Tecnologias</h3>

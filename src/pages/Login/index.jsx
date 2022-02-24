@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { Redirect, useHistory } from "react-router-dom"
 
 import { Container, HeaderContainer } from "./styles"
 
@@ -9,7 +10,7 @@ import Input from "../../components/Input"
 
 import api from "../../services/api"
 
-const Login = () => {
+const Login = ({ isAuthenticated, setIsAuthenticated }) => {
     const loginSchema = yup.object().shape({
         email: yup.string().required("Campo obrigatório"),
 
@@ -22,17 +23,24 @@ const Login = () => {
         formState: { errors },
     } = useForm({ resolver: yupResolver(loginSchema) })
 
+    const history = useHistory()
+
     const handleLogin = (data) => {
         api.post("/sessions", data)
             .then((response) => {
                 localStorage.setItem("@kenziehub: token", response.data.token)
                 localStorage.setItem("@kenziehub: user", JSON.stringify(response.data.user))
-                console.log(response.data)
+                setIsAuthenticated(true)
+                history.push("/")
             })
             .catch((error) => console.log(error))
     }
 
     const isFormErrored = Object.keys(errors).length === 0
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
+    }
 
     return (
         <>
@@ -61,7 +69,7 @@ const Login = () => {
                     Entrar
                 </Button>
                 <span>Ainda não possui uma conta?</span>
-                <Button colorSchema="grey" type="button">
+                <Button colorSchema="grey" type="button" onClick={() => history.push("/register")}>
                     Cadastrar
                 </Button>
             </Container>
