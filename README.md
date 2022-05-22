@@ -19,6 +19,7 @@ O objetivo deste projeto era desenvolver um website com sistema de login em que 
 
 ### Tecnologias
 
+- React
 - Styled-components
 - React-Hook-Form
 - React-Router-Dom
